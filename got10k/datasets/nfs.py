@@ -63,7 +63,12 @@ class NfS(object):
                 n = min(len(img_files), len(anno))
                 anno = anno[:n]
                 img_files = img_files[:n]
-        assert len(img_files) == len(anno)
+        #assert len(img_files) == len(anno), (len(img_files), len(anno))
+        if len(img_files) != len(anno):
+            print("WARNING, len(img_files) != len(anno)!", len(img_files), len(anno))
+            m = min(len(img_files), len(anno))
+            img_files = img_files[:m]
+            anno = anno[:m]
 
         return img_files, anno
 

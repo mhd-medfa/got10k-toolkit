@@ -287,6 +287,10 @@ class ExperimentOTB(object):
         inds = np.argsort(succ)[::-1]
         tracker_names = [tracker_names[i] for i in inds]
 
+        # activate latex text rendering
+        #matplotlib.rc('text', usetex=True)
+        matplotlib.rcParams.update({'font.size': 19.0})
+
         # plot success curves
         thr_iou = np.linspace(0, 1, self.nbins_iou)
         fig, ax = plt.subplots()
@@ -298,17 +302,22 @@ class ExperimentOTB(object):
                             markers[i % len(markers)],
                             linewidth=4)
             lines.append(line)
-            legends.append('%s: [%.3f]' % (name, performance[name][key]['success_score']))
+            if name == "Siam R-CNN":
+                legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['success_score'])
+            else:
+                legends.append('%s: [%.3f]' % (name, performance[name][key]['success_score']))
         matplotlib.rcParams.update({'font.size': 15.0})
         legend = ax.legend(lines, legends, loc='lower left')
+        matplotlib.rcParams.update({'font.size': 19.0})
 
-        matplotlib.rcParams.update({'font.size': 11})
+        #matplotlib.rcParams.update({'font.size': 11})
         ax.set(xlabel='Overlap threshold',
                ylabel='Success rate',
                xlim=(0, 1), ylim=(0, 1),
                title='Success plots of OPE')
-        ax.xaxis.label.set_size(14)
-        ax.yaxis.label.set_size(14)
+        ax.set_title('Success plots of OPE', fontweight='bold')
+        ax.xaxis.label.set_size(17)
+        ax.yaxis.label.set_size(17)
         ax.grid(True)
         fig.tight_layout()
         
@@ -336,17 +345,22 @@ class ExperimentOTB(object):
                             markers[i % len(markers)],
                             linewidth=4)
             lines.append(line)
-            legends.append('%s: [%.3f]' % (name, performance[name][key]['precision_score']))
+            if name == "Siam R-CNN":
+                legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['precision_score'])
+            else:
+                legends.append('%s: [%.3f]' % (name, performance[name][key]['precision_score']))
         matplotlib.rcParams.update({'font.size': 15.0})
         legend = ax.legend(lines, legends, loc='lower right')
+        matplotlib.rcParams.update({'font.size': 19.0})
         
-        matplotlib.rcParams.update({'font.size': 11})
+        #matplotlib.rcParams.update({'font.size': 11})
         ax.set(xlabel='Location error threshold',
                ylabel='Precision',
                xlim=(0, thr_ce.max()), ylim=(0, 1),
                title='Precision plots of OPE')
-        ax.xaxis.label.set_size(14)
-        ax.yaxis.label.set_size(14)
+        ax.set_title('Precision plots of OPE', fontweight='bold')
+        ax.xaxis.label.set_size(17)
+        ax.yaxis.label.set_size(17)
         ax.grid(True)
         fig.tight_layout()
         

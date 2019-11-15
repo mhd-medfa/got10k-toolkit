@@ -17,7 +17,7 @@ class ExperimentTColor128(ExperimentOTB):
             evaluation results. Default is ``./reports``.
     """
     def __init__(self, root_dir,
-                 result_dir='results', report_dir='reports'):
+                 result_dir='results', report_dir='reports', start_idx=0, end_idx=None):
         self.dataset = TColor128(root_dir)
         self.result_dir = os.path.join(result_dir, 'TColor128')
         self.report_dir = os.path.join(report_dir, 'TColor128')
@@ -25,3 +25,7 @@ class ExperimentTColor128(ExperimentOTB):
         # converges to the average overlap (AO)
         self.nbins_iou = 21
         self.nbins_ce = 51
+        self.start_idx = start_idx
+        self.end_idx = end_idx
+        self.use_confs = False
+        self.dump_as_csv = False

@@ -356,6 +356,8 @@ class ExperimentGOT10k(object):
         markers = ['-', '--', '-.']
         markers = [c + m for m in markers for c in [''] * 10]
 
+        matplotlib.rcParams.update({'font.size': 19})
+
         # plot success curves
         thr_iou = np.linspace(0, 1, self.nbins_iou)
         fig, ax = plt.subplots()
@@ -367,19 +369,22 @@ class ExperimentGOT10k(object):
                             markers[i % len(markers)],
                             linewidth=4)
             lines.append(line)
-            legends.append('%s: [%.3f]' % (
-                name, performance[name][key]['ao']))
+            if name == "Siam R-CNN (ours)":
+                legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['ao'])
+            else:
+                legends.append('%s: [%.3f]' % (name, performance[name][key]['ao']))
         matplotlib.rcParams.update({'font.size': 13.0})
         legend = ax.legend(lines, legends, loc='lower left',
                            bbox_to_anchor=(0., 0.))
         
-        matplotlib.rcParams.update({'font.size': 13})
+        matplotlib.rcParams.update({'font.size': 19})
         ax.set(xlabel='Overlap threshold',
                ylabel='Success rate',
                xlim=(0, 1), ylim=(0, 1),
                title='Success plots on GOT-10k')
-        ax.xaxis.label.set_size(13)
-        ax.yaxis.label.set_size(13)
+        ax.set_title('Success plots on GOT-10k', fontweight='bold')
+        ax.xaxis.label.set_size(17)
+        ax.yaxis.label.set_size(17)
         ax.grid(True)
         fig.tight_layout()
         
