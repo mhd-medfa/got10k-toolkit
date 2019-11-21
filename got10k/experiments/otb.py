@@ -36,8 +36,6 @@ class ExperimentOTB(object):
         self.nbins_ce = 51
         self.start_idx = start_idx
         self.end_idx = end_idx
-        if end_idx is None:
-            self.end_idx = 100
         self.use_confs = False
         self.dump_as_csv = False
 
