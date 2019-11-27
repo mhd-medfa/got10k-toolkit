@@ -367,7 +367,8 @@ class ExperimentGOT10k(object):
             line, = ax.plot(thr_iou,
                             performance[name][key]['succ_curve'],
                             markers[i % len(markers)],
-                            linewidth=4)
+                            linewidth=4,
+                            zorder=performance[name][key]['ao'])
             lines.append(line)
             if name == "Siam R-CNN (ours)":
                 legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['ao'])

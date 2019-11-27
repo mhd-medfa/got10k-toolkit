@@ -298,7 +298,8 @@ class ExperimentOTB(object):
             line, = ax.plot(thr_iou,
                             performance[name][key]['success_curve'],
                             markers[i % len(markers)],
-                            linewidth=4)
+                            linewidth=4,
+                            zorder=performance[name][key]['success_score'])
             lines.append(line)
             if name == "Siam R-CNN":
                 legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['success_score'])
@@ -341,7 +342,8 @@ class ExperimentOTB(object):
             line, = ax.plot(thr_ce,
                             performance[name][key]['precision_curve'],
                             markers[i % len(markers)],
-                            linewidth=4)
+                            linewidth=4,
+                            zorder=performance[name][key]['success_score'])
             lines.append(line)
             if name == "Siam R-CNN":
                 legends.append('$\\bf{Siam}$ $\\bf{R}$$\\bf{-}$$\\bf{CNN}$: [%.3f]' % performance[name][key]['precision_score'])
