@@ -8,7 +8,7 @@ class CustomDataset(object):
         super().__init__()
         self.root_dir = root_dir
         seqs = sorted(glob.glob(self.root_dir + "/*"))
-        seqs = [x for x in seqs if os.path.isdir(x)]
+        seqs = [x.split("/")[-1] for x in seqs if os.path.isdir(x)]
         self.seq_names = seqs
         assert len(seqs) > 0
         print("custom dataset seqs", seqs)
@@ -16,8 +16,8 @@ class CustomDataset(object):
     def __getitem__(self, index):
         assert 0 <= index <= len(self.seq_names)
         seq = self.seq_names[index]
-        imgs = sorted(glob.glob(os.path.join(self.root_dir, seq, "*.jpg")))
-        gt_file = os.path.join(self.root_dir, seq, "groundtruth.txt")
+        imgs = sorted(glob.glob(os.path.join(self.root_dir, seq, "img/*.jpg")))
+        gt_file = os.path.join(self.root_dir, seq, "groundtruth_rect.txt")
         with open(gt_file) as f:
             l = f.readline().strip()
             sp = l.split()

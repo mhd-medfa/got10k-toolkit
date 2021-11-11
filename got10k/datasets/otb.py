@@ -56,8 +56,8 @@ class OTB(object):
                     'Girl2', 'Gym', 'Human2', 'Human5', 'Human7', 'Human8',
                     'Jogging', 'KiteSurf', 'Lemming', 'Man', 'Mhyang',
                     'MountainBike', 'Rubik', 'Singer1', 'Skater',
-                    'Skater2', 'Subway', 'Suv', 'Tiger1', 'Toy', 'Trans',
-                    'Twinnings', 'Vase'] + __tb50_seqs
+                    'Skater2', 'Subway', 'Suv','Basketball', 'BlurCar2'] #,'Tiger1', 'Toy', 'Trans',
+                    #'Twinnings', 'Vase'] + __tb50_seqs
 
     __otb15_seqs = __tb100_seqs
 
